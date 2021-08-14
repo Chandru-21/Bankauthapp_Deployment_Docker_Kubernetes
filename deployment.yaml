@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bankauth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bankauthclassifier
+  template:
+    metadata:
+      labels:
+        app: bankauthclassifier
+    spec:
+      containers:
+      - name: bankauth-app
+        image: gcr.io/united-aura-322008/authapp
+        ports:
+        - containerPort: 8080
+        env:
+          - name: PORT
+            value: "8080"
